@@ -42,23 +42,24 @@ func _fixed_process(delta):
 			
 		get_node("IA agent").set_pos(new_pos)
 
+func create_path(destination):
+	print(destination)	
+	path = get_simple_path(get_node("IA agent").get_pos(),destination)
+	update()
+	for v in path:
+		print(v)
+	if path != null:
+		offset = 0
+		current_vector = 0
+		original_position = get_node("IA agent").get_pos()
+
 func _input(event):
 	if(event.type == InputEvent.MOUSE_BUTTON):
 		if(event.button_index == 1):
-			print ("Mouse pressed")
-			if(path.size()):
-				touchPos = Vector2(event.x,event.y)
-				drawTouch = true
-				closestPos = get_closest_point(touchPos)
-				print("Drawing touch")
-				update()
+			touchPos = Vector2(event.x,event.y)
+			drawTouch = true
+			var destination = get_node("Destinations").choose_destination()
+			create_path(destination)
             
 		if(event.button_index == 2):
-			path = get_simple_path(get_node("IA agent").get_pos(),Vector2(event.x,event.y))
-			update()
-			for v in path:
-				print(v)
-			if path != null:
-				offset = 0
-				current_vector = 0
-				original_position = get_node("IA agent").get_pos()
+			create_path(Vector2(event.x,event.y))

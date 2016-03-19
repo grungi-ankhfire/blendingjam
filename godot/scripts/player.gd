@@ -20,6 +20,10 @@ func _process(deltatime):
 func bound_pos(pos):
 	if pos.x > 152:
 		pos.x = 152
+	if pos.y > 152:
+		pos.y = 152
+	if pos.y < 28:
+		pos.y = 28
 	if pos.x < 28:
 		pos.x = 28
 	return pos

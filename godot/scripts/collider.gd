@@ -3,6 +3,8 @@ extends KinematicBody2D
 const speed = 100
 var inArea = false
 var anim
+var anime = "kill_"
+var kill = null
 
 func _ready():
 	set_fixed_process(true)
@@ -28,9 +30,17 @@ func _fixed_process(delta):
 		move(direction*speed*delta)
 		
 	if inArea == true:
+		if Input.is_action_pressed("ui_up"):
+			kill = "up"
+		if Input.is_action_pressed("ui_down"):
+			kill = "down"
+		if Input.is_action_pressed("ui_left"):
+			kill = "left"
+		if Input.is_action_pressed("ui_right"):
+			kill = "right"
+
 		if Input.is_key_pressed(KEY_SPACE):
-			if anim.has_animation("kill_up"):
-				anim.play("kill_up")
+			anim.play(anime + kill)
 			print("YO")
 
 func _on_Area2D_body_enter(body):

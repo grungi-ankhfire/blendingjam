@@ -17,7 +17,7 @@ func _draw():
    if(path.size()):
       for i in range(path.size()):
 #         draw_string(font,Vector2(path[i].x,path[i].y - 20),str(i+1))
-         draw_circle(path[i],10,Color(1,1,1))
+         draw_circle(path[i],10,Color(1,0,0))
       
       if(drawTouch):
          draw_circle(touchPos,10,Color(0,1,0))  
@@ -30,7 +30,6 @@ func _fixed_process(delta):
 		var scaled_offset = (offset * movement_length) + delta * 100
 		offset = scaled_offset / movement_length
 		var new_pos = original_position + displacement*offset
-		print(offset)
 		if offset >= 1:
 			offset = 0
 			new_pos = path[current_vector]
@@ -40,14 +39,11 @@ func _fixed_process(delta):
 			else:
 				current_vector = null
 			
-		get_node("IA agent").set_pos(new_pos)
+		get_node("IA agent").move(new_pos-get_node("IA agent").get_pos())
 
 func create_path(destination):
-	print(destination)	
 	path = get_simple_path(get_node("IA agent").get_pos(),destination)
 	update()
-	for v in path:
-		print(v)
 	if path != null:
 		offset = 0
 		current_vector = 0

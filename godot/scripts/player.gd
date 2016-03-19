@@ -1,5 +1,5 @@
 
-extends Sprite
+extends AnimatedSprite
 
 export var speed = 1.0
 var heading_direction_h = 0.0
@@ -16,15 +16,23 @@ func _process(deltatime):
 	get_node("..").move(Vector2(a, b))
 	
 func go_left():
+	if anim.has_animation("left"):
+		anim.play("left")
 	heading_direction_h = -1.0
 	
 func go_right():
+	if anim.has_animation("right"):
+		anim.play("right")
 	heading_direction_h = 1.0
 	
 func go_up():
+	if anim.has_animation("up"):
+		anim.play("up")
 	heading_direction_v = -1.0
 
 func go_down():
+	if anim.has_animation("down"):
+		anim.play("down")
 	heading_direction_v = 1.0
 
 func stop_h():

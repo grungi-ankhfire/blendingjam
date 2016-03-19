@@ -1,7 +1,7 @@
 
 extends Sprite
 
-export var speed = 50.0
+export var speed = 1.0
 var heading_direction_h = 0.0
 var heading_direction_v = 0.0
 var anim
@@ -11,22 +11,9 @@ func _ready():
 	anim = get_node("./animator")
 
 func _process(deltatime):
-	var pos = get_pos()
-	pos.x += speed * deltatime * heading_direction_h
-	pos.y += speed * deltatime * heading_direction_v
-	pos = bound_pos(pos)
-	set_pos(pos)
-	
-func bound_pos(pos):
-	if pos.x > 152:
-		pos.x = 152
-	if pos.y > 152:
-		pos.y = 152
-	if pos.y < 28:
-		pos.y = 28
-	if pos.x < 28:
-		pos.x = 28
-	return pos
+	var a = speed * deltatime * heading_direction_h
+	var b = speed * deltatime * heading_direction_v
+	get_node("..").move(Vector2(a, b))
 	
 func go_left():
 	heading_direction_h = -1.0

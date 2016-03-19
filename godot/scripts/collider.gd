@@ -2,9 +2,11 @@ extends KinematicBody2D
 
 const speed = 100
 var inArea = false
+var anim
 
 func _ready():
 	set_fixed_process(true)
+	anim = get_node("./faucheuse/animator")
 	get_node("../StaticBody2D/Area2D").connect("body_enter",self,"_on_Area2D_body_enter")
 	get_node("../StaticBody2D/Area2D").connect("body_exit",self,"_on_Area2D_body_exit")
 
@@ -27,6 +29,8 @@ func _fixed_process(delta):
 		
 	if inArea == true:
 		if Input.is_key_pressed(KEY_SPACE):
+			if anim.has_animation("kill_up"):
+				anim.play("kill_up")
 			print("YO")
 
 func _on_Area2D_body_enter(body):

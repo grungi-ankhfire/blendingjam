@@ -34,7 +34,6 @@ func _fixed_process(delta):
 	if inArea == true:
 		if Input.is_action_pressed("ui_up"):
 			kill = "up"
-			
 		if Input.is_action_pressed("ui_down"):
 			kill = "down"
 		if Input.is_action_pressed("ui_left"):
@@ -44,7 +43,6 @@ func _fixed_process(delta):
 
 		if Input.is_key_pressed(KEY_SPACE):
 			anim.play(anime + kill)
-			kill()
 
 func _on_Area2D_body_enter(body):
 	inArea = true

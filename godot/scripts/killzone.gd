@@ -18,6 +18,7 @@ func _ready():
 
 func kill():
 	print("ARGH")
+	get_node("../Normal").frame = 6
 	active = false
 
 func _on_Area2D_body_enter(body):

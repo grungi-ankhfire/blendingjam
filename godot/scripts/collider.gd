@@ -39,6 +39,8 @@ func _fixed_process(delta):
 		direction = n.slide(direction)
 		move(direction*speed*delta)
 		
+
+
 	if inArea == true:
 		if Input.is_action_pressed("ui_up"):
 			kill = "up"

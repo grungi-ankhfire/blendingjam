@@ -42,4 +42,4 @@ func _input(event):
 			get_node("text6").show()
 			state += 1
 		elif state == 6:
-			pass
+			get_tree().change_scene("res://scenes/faucheuse2.scn")

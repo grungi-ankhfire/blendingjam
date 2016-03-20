@@ -12,6 +12,8 @@ var kill_target
 
 var score = 0
 
+var iamdead = false
+
 func _ready():
 	set_fixed_process(true)
 	anim = get_node("./faucheuse/animator")
@@ -77,3 +79,12 @@ func stop_killing():
 #
 #func _on_Area2D_body_exit(body):
 #	inArea = false
+
+
+func _on_nurse_body_enter( body ):
+	print(body)
+	if body == get_node(".") and not iamdead:
+		print("Ok")
+		iamdead = true
+		anim.play("dead")
+		set_fixed_process(false)

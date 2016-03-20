@@ -30,6 +30,9 @@ func _fixed_process(delta):
 	if (Input.is_action_pressed("ui_right")):
 		direction += Vector2(1,0)
 	
+	if direction != Vector2(0,0):
+		is_killing = false
+	
 	move(direction * speed * delta)
 	if is_colliding():
 		var n = get_collision_normal()
@@ -60,7 +63,6 @@ func _fixed_process(delta):
 
 func start_killing():
 	is_killing = true
-	kill_target
 
 func stop_killing():
 	is_killing = false

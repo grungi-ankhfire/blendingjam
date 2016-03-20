@@ -46,5 +46,7 @@ func _on_Area2D_body_enter(body):
 func _on_Area2D_body_exit(body):
 	if body == player_node and active:
 		body.inArea = false
+		if body.kill_target != null:
+			body.kill_target
 		body.kill_target = null
 

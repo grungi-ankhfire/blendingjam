@@ -38,8 +38,16 @@ func _fixed_process(delta):
 				current_vector += 1
 			else:
 				current_vector = null
-			
-		get_node("IA agent").move(new_pos-get_node("IA agent").get_pos())
+		var distance = (new_pos-get_node("IA agent").get_pos()).length()
+		var direction = (new_pos-get_node("IA agent").get_pos()).normalized()
+		var node = get_node("IA agent")
+		
+		node.move(new_pos-get_node("IA agent").get_pos())
+		if node.is_colliding():
+			var n = node.get_collision_normal()
+			direction = n.slide( direction )
+			node.move(direction*distance)
+
 
 func create_path(destination):
 	path = get_simple_path(get_node("IA agent").get_pos(),destination)
@@ -54,7 +62,7 @@ func _input(event):
 		if(event.button_index == 1):
 			touchPos = Vector2(event.x,event.y)
 			drawTouch = true
-			var destination = get_node("Destinations").choose_destination()
+			var destination = get_node("../IA targets").choose_destination()
 			create_path(destination)
             
 		if(event.button_index == 2):

@@ -6,10 +6,8 @@ extends KinematicBody2D
 # var b="textvar"
 var nurse_anime
 
-
-func _ready():
-	# Called every time the node is added to the scene.
 	# Initialization here
+func _ready():
 	nurse_anime = get_node("./Sprite/AnimationPlayer")
 
 func _on_Area2D_body_enter( body ):

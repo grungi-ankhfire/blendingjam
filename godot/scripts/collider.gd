@@ -22,6 +22,8 @@ func _ready():
 	get_node("../Label").set_text(str(score))
 
 func _fixed_process(delta):
+	if iamdead:
+		return
 	var direction = Vector2(0,0)
 	if ( Input.is_action_pressed("ui_up") ):
 		direction += Vector2(0,-1)

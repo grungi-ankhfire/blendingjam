@@ -7,11 +7,15 @@ var anime = "kill_"
 var kill = null
 var score = 0
 
+var kill_timer = 3.0
+var is_killing = false
+var kill_target
+
 func _ready():
 	set_fixed_process(true)
 	anim = get_node("./faucheuse/animator")
-	get_node("../StaticBody2D/Area2D").connect("body_enter",self,"_on_Area2D_body_enter")
-	get_node("../StaticBody2D/Area2D").connect("body_exit",self,"_on_Area2D_body_exit")
+#	get_node("../StaticBody2D/Area2D").connect("body_enter",self,"_on_Area2D_body_enter")
+#	get_node("../StaticBody2D/Area2D").connect("body_exit",self,"_on_Area2D_body_exit")
 	get_node("../Label").set_text(str(score))
 
 func _fixed_process(delta):
@@ -44,10 +48,28 @@ func _fixed_process(delta):
 
 		if Input.is_key_pressed(KEY_SPACE):
 			anim.play(anime + kill)
-			kill()
+			start_killing()
 
-func _on_Area2D_body_enter(body):
-	inArea = true
+	# Killing stuff
+	if is_killing:
+		kill_timer -= delta
+		if kill_timer < 0.0:
+			kill_target.get_node("Area2D").kill()
+			stop_killing()
+			inArea = false
 
-func _on_Area2D_body_exit(body):
-	inArea = false
+func start_killing():
+	is_killing = true
+	kill_target
+
+func stop_killing():
+	is_killing = false
+	kill_timer = 3.0
+	kill_target = null
+	anim.play(kill)
+#
+#func _on_Area2D_body_enter(body):
+#	inArea = true
+#
+#func _on_Area2D_body_exit(body):
+#	inArea = false

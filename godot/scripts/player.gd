@@ -6,6 +6,7 @@ var heading_direction_h = 0.0
 var heading_direction_v = 0.0
 var anim
 
+
 func _ready():
 	set_process(speed)
 	anim = get_node("./animator")

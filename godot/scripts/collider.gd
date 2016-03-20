@@ -5,12 +5,14 @@ var inArea = false
 var anim
 var anime = "kill_"
 var kill = null
+var score = 0
 
 func _ready():
 	set_fixed_process(true)
 	anim = get_node("./faucheuse/animator")
 	get_node("../StaticBody2D/Area2D").connect("body_enter",self,"_on_Area2D_body_enter")
 	get_node("../StaticBody2D/Area2D").connect("body_exit",self,"_on_Area2D_body_exit")
+	get_node("../Label").set_text(str(score))
 
 func _fixed_process(delta):
 	var direction = Vector2(0,0)
@@ -32,6 +34,7 @@ func _fixed_process(delta):
 	if inArea == true:
 		if Input.is_action_pressed("ui_up"):
 			kill = "up"
+			
 		if Input.is_action_pressed("ui_down"):
 			kill = "down"
 		if Input.is_action_pressed("ui_left"):
@@ -41,7 +44,7 @@ func _fixed_process(delta):
 
 		if Input.is_key_pressed(KEY_SPACE):
 			anim.play(anime + kill)
-			print("YO")
+			kill()
 
 func _on_Area2D_body_enter(body):
 	inArea = true

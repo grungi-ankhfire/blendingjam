@@ -40,3 +40,5 @@ func stop_h():
 	
 func stop_v():
 	heading_direction_v = 0.0
+	
+	

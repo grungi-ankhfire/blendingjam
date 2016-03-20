@@ -5,11 +5,12 @@ var inArea = false
 var anim
 var anime = "kill_"
 var kill = null
-var score = 0
 
 var kill_timer = 3.0
 var is_killing = false
 var kill_target
+
+var score = 0
 
 func _ready():
 	set_fixed_process(true)
@@ -53,7 +54,7 @@ func _fixed_process(delta):
 	if is_killing:
 		kill_timer -= delta
 		if kill_timer < 0.0:
-			kill_target.get_node("Area2D").kill()
+			kill_target.get_node("Area2D").kill(self)
 			stop_killing()
 			inArea = false
 

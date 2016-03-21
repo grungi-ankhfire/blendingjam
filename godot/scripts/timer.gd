@@ -1,4 +1,3 @@
-
 extends RichTextLabel
 
 var count = 180

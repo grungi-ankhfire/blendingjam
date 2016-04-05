@@ -91,10 +91,8 @@ func _on_nurse_body_enter( body ):
 		anim.play("dead")
 		set_fixed_process(false)
 		get_node("./faucheuse").set_process(false)
-		InputMap.erase_action("ui_up")
-		InputMap.erase_action("ui_down")
-		InputMap.erase_action("ui_left")
-		InputMap.erase_action("ui_right")
+		get_node("./faucheuse/playercontroller").set_process(false)
+
 
 func _on_animator_finished():
 	get_tree().change_scene("res://scenes/game_over.scn")

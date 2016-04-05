@@ -41,7 +41,7 @@ func _fixed_process(delta):
 	if is_colliding():
 		var n = get_collision_normal()
 		direction = n.slide(direction)
-		move(direction*speed*delta)
+#		move(direction*speed*delta)
 		
 
 

@@ -89,4 +89,6 @@ func _on_nurse_body_enter( body ):
 		print("Ok")
 		iamdead = true
 		anim.play("dead")
-		set_fixed_process(false)
+
+func _on_animator_finished():
+	get_tree().change_scene("res://scenes/game_over.scn")

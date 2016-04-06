@@ -13,7 +13,7 @@ func _ready():
 func _process(deltatime):
 	var a = speed * deltatime * heading_direction_h
 	var b = speed * deltatime * heading_direction_v
-	get_node("..").move(Vector2(a, b))
+#	get_node("..").move(Vector2(a, b))
 	
 func go_left():
 	if anim.has_animation("left"):

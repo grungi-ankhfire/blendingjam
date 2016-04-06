@@ -41,7 +41,7 @@ func _fixed_process(delta):
 	if is_colliding():
 		var n = get_collision_normal()
 		direction = n.slide(direction)
-#		move(direction*speed*delta)
+		move(direction*speed*delta)
 		
 
 
@@ -55,7 +55,7 @@ func _fixed_process(delta):
 		if Input.is_action_pressed("ui_right"):
 			kill = "right"
 
-		if Input.is_key_pressed(KEY_SPACE):
+		if Input.is_action_pressed("ui_accept"):
 			anim.play(anime + kill)
 			start_killing()
 

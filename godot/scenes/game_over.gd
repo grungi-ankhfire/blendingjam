@@ -10,6 +10,6 @@ func _ready():
 
 
 func _input(event):
-	if(event.type == InputEvent.MOUSE_BUTTON and event.pressed == false):
+	if(event.is_action("ui_accept") and event.pressed == false):
 		get_tree().change_scene("res://scenes/main_menu.scn")
 		

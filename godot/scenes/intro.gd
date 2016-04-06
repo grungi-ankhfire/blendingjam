@@ -12,7 +12,7 @@ func _ready():
 
 
 func _input(event):
-	if(event.type == InputEvent.MOUSE_BUTTON and event.pressed == false):
+	if(event.is_action("ui_accept") and event.pressed == false):
 		if state == 0:
 			get_node("text0").hide()
 			state += 1

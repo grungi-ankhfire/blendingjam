@@ -11,8 +11,12 @@ var original_position
 
 var interaction_timer
 
+var cur_anim_direction = "down"
+var animation_player
+
 func _ready():
 #	set_process_input(true)
+	animation_player = get_node("IA agent/Sprite/AnimationPlayer")
 	set_fixed_process(true)
 	init_movement()
 
@@ -49,13 +53,25 @@ func _fixed_process(delta):
 			else:
 				current_vector = null
 				interaction_timer = 3.0
-				get_node("IA agent/Sprite/AnimationPlayer").play("nurse_interaction")
+				animation_player.play("nurse_interaction")
 
 		var distance = (new_pos-get_node("IA agent").get_pos()).length()
 		var direction = (new_pos-get_node("IA agent").get_pos()).normalized()
 		var node = get_node("IA agent")
 		
 		node.move(new_pos-get_node("IA agent").get_pos())
+		if abs(direction.x) > abs(direction.y):
+			if direction.x > 0 and cur_anim_direction != "right":
+				cur_anim_direction = "right"
+				animation_player.play("nurse walking right")
+			elif direction.x < 0 and cur_anim_direction != "left":
+				cur_anim_direction = "left"
+				animation_player.play("nurse walking left")
+		else:
+			if cur_anim_direction != "down":
+				cur_anim_direction = "down"
+				animation_player.play("nurse walking down")
+		
 		if node.is_colliding():
 			var n = node.get_collision_normal()
 			direction = n.slide( direction )
@@ -63,7 +79,7 @@ func _fixed_process(delta):
 	elif interaction_timer > 0.0:
 		interaction_timer -= delta
 	else:
-		get_node("IA agent/Sprite/AnimationPlayer").play("nurse walking")
+		cur_anim_direction = null
 		init_movement()
 
 func create_path(destination):

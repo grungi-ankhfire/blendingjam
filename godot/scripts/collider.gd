@@ -84,9 +84,7 @@ func stop_killing():
 
 
 func _on_nurse_body_enter( body ):
-	print(body)
 	if body == get_node(".") and not iamdead:
-		print("Ok")
 		iamdead = true
 		anim.play("dead")
 		set_fixed_process(false)

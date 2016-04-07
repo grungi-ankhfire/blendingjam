@@ -68,7 +68,10 @@ func _fixed_process(delta):
 				cur_anim_direction = "left"
 				animation_player.play("nurse walking left")
 		else:
-			if cur_anim_direction != "down":
+			if direction.y < 0 and cur_anim_direction != "up":
+				cur_anim_direction = "up"
+				animation_player.play("nurse walking up")
+			elif direction.y > 0 and cur_anim_direction != "down":
 				cur_anim_direction = "down"
 				animation_player.play("nurse walking down")
 		

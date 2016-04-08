@@ -29,6 +29,7 @@ func _fixed_process(delta):
 			player_node.score += 1
 			player_node.get_node("../Label").set_text(str(player_node.score))
 			is_dying = false
+			get_tree().get_root().get_node("./Node2D/Level/IA targets").remove_active(self)
 
 func save_patient():
 	get_node("../Normal").frame = 5
@@ -40,7 +41,6 @@ func kill(character):
 	get_node("../Normal").frame = 6
 	realdeath_timer = 3.0
 	is_dying = true
-	get_tree().get_root().get_node("./Node2D/Level/IA targets").remove_active(self)
 	active = false
 
 func _on_Area2D_body_enter(body):

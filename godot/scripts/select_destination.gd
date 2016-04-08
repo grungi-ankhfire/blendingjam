@@ -17,7 +17,14 @@ func _ready():
 
 func remove_active(the_node):
 	#active_nodes.remove(the_node)
-	inactive_nodes.push_back(the_node)
+	var bed = the_node.get_node("..")
+	for target in active_nodes:
+		if target.get_bed() == bed:
+			inactive_nodes.push_back(target)
+			active_nodes.erase(target)
+			if active_nodes.empty():
+				get_tree().change_scene("res://scenes/game_over.scn")
+			return
 
 func choose_destination():
 	if not initialized:
@@ -28,7 +35,7 @@ func choose_destination():
 		return
 	var positions = get_children()
 	var selected_position = null
-	if randi(100) < 85 or  inactive_nodes == []:
+	if randi() % 100 < 85 or  inactive_nodes == []:
 		print("FSCK")
 		print(active_nodes)
 		selected_position = active_nodes[randi() % active_nodes.size()]

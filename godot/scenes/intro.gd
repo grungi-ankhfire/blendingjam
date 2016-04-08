@@ -42,4 +42,8 @@ func _input(event):
 			get_node("text6").show()
 			state += 1
 		elif state == 6:
+			get_node("text6").hide()
+			get_node("frames").frame = 5
+			state += 1
+		elif state == 7:
 			get_tree().change_scene("res://scenes/faucheuse2.scn")

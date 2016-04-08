@@ -29,6 +29,8 @@ func _fixed_process(delta):
 			player_node.score += 1
 			player_node.get_node("../Label").set_text(str(player_node.score))
 			is_dying = false
+		if player_node.score == 14:
+			get_tree().change_scene("res://scenes/victory.scn")
 
 func save_patient():
 	get_node("../Normal").frame = 5

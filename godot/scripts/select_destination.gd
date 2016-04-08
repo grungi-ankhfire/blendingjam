@@ -17,7 +17,8 @@ func _ready():
 
 func remove_active(the_node):
 	#active_nodes.remove(the_node)
-	inactive_nodes.push_back(the_node)
+	#inactive_nodes.push_back(the_node)
+	pass
 
 func choose_destination():
 	if not initialized:

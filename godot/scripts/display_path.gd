@@ -13,6 +13,7 @@ var interaction_timer
 
 var cur_anim_direction = "down"
 var animation_player
+var target_bed
 
 func _ready():
 #	set_process_input(true)
@@ -34,8 +35,8 @@ func init_movement():
 	interaction_timer = 0.0
 	current_vector = null
 	var destination = get_node("../IA targets").choose_destination()
-	create_path(destination)
-
+	create_path(destination.get_pos())
+	target_bed = destination.get_bed()
 
 func _fixed_process(delta):
 	if current_vector != null:
@@ -53,6 +54,8 @@ func _fixed_process(delta):
 			else:
 				current_vector = null
 				interaction_timer = 3.0
+				if target_bed.get_node("Area2D").is_dying:
+					target_bed.get_node("Area2D").save_patient()
 				animation_player.play("nurse_interaction")
 
 		var distance = (new_pos-get_node("IA agent").get_pos()).length()

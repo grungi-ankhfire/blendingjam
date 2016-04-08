@@ -23,8 +23,9 @@ func remove_active(the_node):
 			inactive_nodes.push_back(target)
 			active_nodes.erase(target)
 			if active_nodes.empty():
-				get_tree().change_scene("res://scenes/game_over.scn")
+				get_tree().change_scene("res://scenes/victory.scn")
 			return
+
 
 func choose_destination():
 	if not initialized:

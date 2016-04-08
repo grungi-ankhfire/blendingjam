@@ -13,7 +13,6 @@ func _ready():
 func _fixed_process(delta):
 	if is_colliding():
 		var collide = get_collider()
-		print(collide)
 
 func _on_Area2D_body_enter( body ):
 	nurse_anime.play("nurse_interaction")

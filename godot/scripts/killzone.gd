@@ -20,17 +20,20 @@ func _ready():
 	player_node = get_tree().get_root().get_node("./Node2D/KinematicBody2D")
 	connect("body_enter",self,"_on_Area2D_body_enter")
 	connect("body_exit",self,"_on_Area2D_body_exit")
+	Globals.set("SCORE", 0)
 
 func _fixed_process(delta):
 	if is_dying:
 		realdeath_timer -= delta
 		if realdeath_timer < 0.0:
 			get_node("../Normal").frame = 7
-			player_node.score += 1
+			player_node.score += 3
 			player_node.get_node("../Label").set_text(str(player_node.score))
 			is_dying = false
-		if player_node.score == 14:
-			get_tree().change_scene("res://scenes/victory.scn")
+			Globals.set("SCORE", player_node.score)
+			var timer = get_tree().get_root().get_node("./Node2D/RichTextLabel")
+			Globals.set("TIMER", timer.count)
+			get_tree().get_root().get_node("./Node2D/Level/IA targets").remove_active(self)
 
 func save_patient():
 	get_node("../Normal").frame = 5
@@ -40,9 +43,11 @@ func save_patient():
 
 func kill(character):
 	get_node("../Normal").frame = 6
+	player_node.score += 1
+	player_node.get_node("../Label").set_text(str(player_node.score))
+	Globals.set("SCORE", player_node.score)
 	realdeath_timer = 3.0
 	is_dying = true
-	get_tree().get_root().get_node("./Node2D/Level/IA targets").remove_active(self)
 	active = false
 
 func _on_Area2D_body_enter(body):

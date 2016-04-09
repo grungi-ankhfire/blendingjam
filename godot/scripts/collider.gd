@@ -44,6 +44,7 @@ func _fixed_process(delta):
 		move(direction*speed*delta)
 		
 
+
 	if inArea == true:
 		if Input.is_action_pressed("ui_up"):
 			kill = "up"
@@ -65,7 +66,6 @@ func _fixed_process(delta):
 			kill_target.get_node("Area2D").kill(self)
 			stop_killing()
 			inArea = false
-	
 
 func start_killing():
 	is_killing = true
@@ -88,6 +88,7 @@ func _on_nurse_body_enter( body ):
 		iamdead = true
 		anim.play("dead")
 		set_fixed_process(false)
+		Globals.set("TIMER", 0)
 		get_node("./faucheuse").set_process(false)
 		get_node("./faucheuse/playercontroller").set_process(false)
 

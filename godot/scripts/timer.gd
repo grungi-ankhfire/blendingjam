@@ -10,4 +10,5 @@ func _on_Timer_timeout():
 	self.clear()
 	self.add_text(str(count))
 	if count < 0:
+		Globals.set("TIMER", 0)
 		get_tree().change_scene("res://scenes/game_over.scn")

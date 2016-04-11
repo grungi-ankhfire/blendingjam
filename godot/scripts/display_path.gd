@@ -42,7 +42,7 @@ func _fixed_process(delta):
 	if current_vector != null:
 		var displacement = path[current_vector] - original_position
 		var movement_length = displacement.length()
-		var scaled_offset = (offset * movement_length) + delta * 100
+		var scaled_offset = (offset * movement_length) + delta * 200
 		offset = scaled_offset / movement_length
 		var new_pos = original_position + displacement*offset
 		if offset >= 1:
@@ -53,7 +53,7 @@ func _fixed_process(delta):
 				current_vector += 1
 			else:
 				current_vector = null
-				interaction_timer = 3.0
+				interaction_timer = 1.0
 				if target_bed.get_node("Area2D").is_dying:
 					target_bed.get_node("Area2D").save_patient()
 				animation_player.play("nurse_interaction")

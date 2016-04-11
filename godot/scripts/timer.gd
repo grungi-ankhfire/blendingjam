@@ -1,9 +1,9 @@
 extends RichTextLabel
 
-var count = 180
+var count = 120
 
 func _ready():
-	self.add_text("180")
+	self.add_text("120")
 
 func _on_Timer_timeout():
 	count -= 1

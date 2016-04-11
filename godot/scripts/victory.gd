@@ -13,6 +13,7 @@ func _input(event):
 			state += 1
 			get_node("frames").frame = 1
 			get_node("Label").show()
+			get_tree().get_root().get_node("./Node/Node").hide()
 		elif state == 1:
 			get_tree().change_scene("res://scenes/main_menu.scn")
 
